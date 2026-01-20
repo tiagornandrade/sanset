@@ -33,10 +33,20 @@ REQUIRED_APIS=(
 )
 
 for api in "${REQUIRED_APIS[@]}"; do
-    if gcloud services enable $api --project=$PROJECT_ID --quiet 2>/dev/null; then
+    # Try to enable the API, surfacing stderr so real failures are visible
+    if gcloud services enable "$api" --project="$PROJECT_ID" --quiet; then
         echo "  ✅ $api enabled"
     else
-        echo "  ⚠️  $api may already be enabled"
+        # If enabling failed, check whether the API is already enabled
+        if gcloud services list \
+            --enabled \
+            --project="$PROJECT_ID" \
+            --filter="NAME:$api" \
+            --format="value(config.name)" | grep -qx "$api"; then
+            echo "  ℹ️  $api is already enabled"
+        else
+            echo "  ❌ Failed to enable $api (see gcloud error output above)"
+        fi
     fi
 done
 echo ""
