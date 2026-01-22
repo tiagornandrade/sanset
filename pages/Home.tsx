@@ -103,12 +103,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 <span className="text-[10px] font-mono text-gray-500">GROWTH_AGENT_LOG v4.2</span>
               </div>
               <div className="font-mono text-[11px] space-y-2 overflow-hidden">
-                <p className="text-primary animate-pulse">> [AGENT] Connected to HubSpot CRM...</p>
-                <p className="text-white">> 14 New Leads detected in last 5m.</p>
-                <p className="text-white">> Qualifying via LinkedIn Enrichment...</p>
-                <p className="text-primary">> 3 Leads identified as High-Priority (MRR Pot: >$5k).</p>
-                <p className="text-white">> Sending personalized Slack briefing to Sales Team.</p>
-                <p className="text-primary">> [SYSTEM] Flow resolution: 100%.</p>
+                <p className="text-primary animate-pulse">{'>'} [AGENT] Connected to HubSpot CRM...</p>
+                <p className="text-white">{'>'} 14 New Leads detected in last 5m.</p>
+                <p className="text-white">{'>'} Qualifying via LinkedIn Enrichment...</p>
+                <p className="text-primary">{'>'} 3 Leads identified as High-Priority (MRR Pot: {'>$5k'}).</p>
+                <p className="text-white">{'>'} Sending personalized Slack briefing to Sales Team.</p>
+                <p className="text-primary">{'>'} [SYSTEM] Flow resolution: 100%.</p>
               </div>
             </div>
             {/* Glow behind */}
