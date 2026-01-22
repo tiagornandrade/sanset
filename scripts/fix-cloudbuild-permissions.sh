@@ -13,8 +13,16 @@ echo "🔧 Fixing Cloud Build permissions for Service Account..."
 echo "Service Account: $SERVICE_ACCOUNT_EMAIL"
 echo ""
 
+# Grant Service Usage Admin role (allows enabling APIs)
+echo "1️⃣ Granting Service Usage Admin role..."
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \
+    --role="roles/serviceusage.serviceUsageAdmin" \
+    --quiet || echo "  ⚠️  Role may already be granted"
+echo ""
+
 # Grant Service Usage Consumer role (required for serviceusage.services.use)
-echo "1️⃣ Granting Service Usage Consumer role..."
+echo "2️⃣ Granting Service Usage Consumer role..."
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \
     --role="roles/serviceusage.serviceUsageConsumer" \
@@ -22,7 +30,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 echo ""
 
 # Grant Cloud Build Service Account role (allows using Cloud Build)
-echo "2️⃣ Granting Cloud Build Service Account role..."
+echo "3️⃣ Granting Cloud Build Service Account role..."
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \
     --role="roles/cloudbuild.builds.builder" \
@@ -30,7 +38,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 echo ""
 
 # Grant Storage Admin role (for accessing Cloud Build buckets)
-echo "3️⃣ Granting Storage Admin role (for Cloud Build buckets)..."
+echo "4️⃣ Granting Storage Admin role (for Cloud Build buckets)..."
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \
     --role="roles/storage.admin" \
@@ -38,7 +46,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 echo ""
 
 # Grant Cloud Build Editor role (if not already granted)
-echo "4️⃣ Granting Cloud Build Editor role..."
+echo "5️⃣ Granting Cloud Build Editor role..."
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" \
     --role="roles/cloudbuild.builds.editor" \
@@ -46,7 +54,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 echo ""
 
 # Grant permission to use Cloud Build service account
-echo "5️⃣ Granting permission to use Cloud Build service account..."
+echo "6️⃣ Granting permission to use Cloud Build service account..."
 PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 CLOUD_BUILD_SA="${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com"
 
@@ -72,6 +80,7 @@ echo "✅ Cloud Build permissions fixed!"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "📋 Granted roles:"
+echo "  ✅ roles/serviceusage.serviceUsageAdmin (allows enabling APIs)"
 echo "  ✅ roles/serviceusage.serviceUsageConsumer (fixes bucket access error)"
 echo "  ✅ roles/cloudbuild.builds.builder"
 echo "  ✅ roles/storage.admin"

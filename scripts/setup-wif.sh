@@ -28,6 +28,7 @@ REQUIRED_APIS=(
     "cloudbuild.googleapis.com"
     "run.googleapis.com"
     "containerregistry.googleapis.com"
+    "artifactregistry.googleapis.com"
     "storage-api.googleapis.com"
     "iam.googleapis.com"
 )
@@ -106,6 +107,12 @@ echo ""
 echo "🔑 Step 4: Granting permissions to Service Account..."
 
 # Cloud Build permissions
+echo "  - Granting Service Usage Admin role..."
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/serviceusage.serviceUsageAdmin" \
+    --quiet 2>/dev/null || echo "  ⚠️  Role may already be granted"
+
 echo "  - Granting Service Usage Consumer role..."
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \

@@ -16,6 +16,7 @@ APIS=(
     "cloudbuild.googleapis.com"               # Cloud Build API
     "run.googleapis.com"                      # Cloud Run API
     "containerregistry.googleapis.com"        # Container Registry API
+    "artifactregistry.googleapis.com"         # Artifact Registry API (required for GCR)
     "storage-api.googleapis.com"              # Cloud Storage API
     "storage-component.googleapis.com"        # Cloud Storage Component API
     "iam.googleapis.com"                      # Identity and Access Management API

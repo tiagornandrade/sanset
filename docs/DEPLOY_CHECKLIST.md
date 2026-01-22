@@ -2,12 +2,19 @@
 
 ## Status da Configuração
 
+### ⚠️ Billing (REQUERIDO)
+
+- [ ] **Billing habilitado no projeto** - **CRÍTICO**
+  - Acesse: <https://console.cloud.google.com/billing?project=intendra-deployments>
+  - Veja mais detalhes em: [BILLING_REQUIREMENT.md](./BILLING_REQUIREMENT.md)
+
 ### ✅ APIs Habilitadas
 
 - [x] `iamcredentials.googleapis.com` - IAM Service Account Credentials API
 - [x] `cloudbuild.googleapis.com` - Cloud Build API (já estava habilitada)
 - [x] `run.googleapis.com` - Cloud Run API (já estava habilitada)
 - [x] `containerregistry.googleapis.com` - Container Registry API (já estava habilitada)
+- [ ] `artifactregistry.googleapis.com` - Artifact Registry API (requer billing)
 - [x] `storage-api.googleapis.com` - Cloud Storage API
 - [x] `storage-component.googleapis.com` - Cloud Storage Component API
 - [x] `iam.googleapis.com` - Identity and Access Management API
@@ -93,10 +100,19 @@ Aguarde alguns minutos e tente novamente, ou verifique se a service account foi 
 
 Verifique se os secrets `WIF_PROVIDER` e `WIF_SERVICE_ACCOUNT` foram adicionados corretamente no GitHub.
 
+### Erro: "Artifact Registry API has not been used" ou "Billing account not found"
+
+**Solução:**
+
+1. Habilite o billing no projeto: <https://console.cloud.google.com/billing?project=intendra-deployments>
+2. Execute `./scripts/enable-artifact-registry.sh`
+3. Veja detalhes completos em: [BILLING_REQUIREMENT.md](./BILLING_REQUIREMENT.md)
+
 ## 📝 Próximos Passos
 
-1. ✅ APIs habilitadas
-2. ⚠️ **Adicionar secrets no GitHub** (CRÍTICO)
-3. ⚠️ Verificar role Cloud Build Editor
-4. 🚀 Fazer push ou executar workflow manualmente
-5. 🎉 Acompanhar o deploy no GitHub Actions
+1. ⚠️ **Habilitar billing no projeto** (CRÍTICO - veja [BILLING_REQUIREMENT.md](./BILLING_REQUIREMENT.md))
+2. ⚠️ **Habilitar Artifact Registry API** (após billing)
+3. ⚠️ **Adicionar secrets no GitHub** (CRÍTICO)
+4. ⚠️ Verificar role Cloud Build Editor
+5. 🚀 Fazer push ou executar workflow manualmente
+6. 🎉 Acompanhar o deploy no GitHub Actions
