@@ -106,6 +106,18 @@ echo ""
 echo "🔑 Step 4: Granting permissions to Service Account..."
 
 # Cloud Build permissions
+echo "  - Granting Service Usage Consumer role..."
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/serviceusage.serviceUsageConsumer" \
+    --quiet 2>/dev/null || echo "  ⚠️  Role may already be granted"
+
+echo "  - Granting Cloud Build Builder role..."
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/cloudbuild.builds.builder" \
+    --quiet 2>/dev/null || echo "  ⚠️  Role may already be granted"
+
 echo "  - Granting Cloud Build Editor role..."
 if gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
@@ -141,6 +153,20 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
     --quiet || echo "  ⚠️  Role may already be granted"
 
 echo "✅ Permissions granted"
+echo ""
+
+# Step 4.5: Grant permission to use Cloud Build service account
+echo "🔗 Step 4.5: Granting permission to use Cloud Build service account..."
+CLOUD_BUILD_SA="${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com"
+if gcloud iam service-accounts add-iam-policy-binding $CLOUD_BUILD_SA \
+    --member="serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/iam.serviceAccountUser" \
+    --project=$PROJECT_ID \
+    --quiet 2>/dev/null; then
+    echo "  ✅ Permission granted to use Cloud Build service account"
+else
+    echo "  ⚠️  Permission may already be granted"
+fi
 echo ""
 
 # Step 5: Allow the provider to impersonate the service account

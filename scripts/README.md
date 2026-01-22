@@ -53,6 +53,23 @@ Obtém os valores de WIF_PROVIDER e WIF_SERVICE_ACCOUNT já configurados.
 ./scripts/get-wif-config.sh
 ```
 
+### 5. `fix-cloudbuild-permissions.sh`
+
+Corrige permissões do Cloud Build, incluindo acesso ao bucket e uso de serviços.
+
+**O que faz:**
+
+- Concede Service Usage Consumer role
+- Concede Cloud Build Builder role
+- Concede Storage Admin role
+- Concede permissão para usar Cloud Build service account
+
+**Uso:**
+
+```bash
+./scripts/fix-cloudbuild-permissions.sh
+```
+
 ## Troubleshooting
 
 ### Erro: "IAM Service Account Credentials API has not been used"
@@ -66,6 +83,10 @@ Obtém os valores de WIF_PROVIDER e WIF_SERVICE_ACCOUNT já configurados.
 ### Erro: "Permission denied" no Cloud Build
 
 **Solução:** Verifique se a role Cloud Build Editor foi concedida: `./scripts/fix-cloudbuild-role.sh`
+
+### Erro: "The user is forbidden from accessing the bucket [PROJECT_cloudbuild]"
+
+**Solução:** Execute `./scripts/fix-cloudbuild-permissions.sh` para corrigir todas as permissões do Cloud Build, incluindo acesso ao bucket e uso de serviços.
 
 ## Ordem Recomendada de Execução
 
@@ -81,13 +102,19 @@ Obtém os valores de WIF_PROVIDER e WIF_SERVICE_ACCOUNT já configurados.
    ./scripts/enable-required-apis.sh
    ```
 
-3. Se houver erro de permissão:
+3. Se houver erro de permissão do Cloud Build:
 
    ```bash
    ./scripts/fix-cloudbuild-role.sh
    ```
 
-4. Para obter os valores dos secrets:
+4. Se houver erro de acesso ao bucket do Cloud Build:
+
+   ```bash
+   ./scripts/fix-cloudbuild-permissions.sh
+   ```
+
+5. Para obter os valores dos secrets:
 
    ```bash
    ./scripts/get-wif-config.sh
