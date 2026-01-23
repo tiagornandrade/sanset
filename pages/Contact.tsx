@@ -274,7 +274,7 @@ const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-6 bg-primary text-background-dark font-extrabold uppercase tracking-[0.3em] text-sm transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_20px_rgba(74,222,128,0.2)] flex items-center justify-center gap-4"
+              className="w-full py-6 bg-primary text-white font-extrabold uppercase tracking-[0.3em] text-sm transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_20px_rgba(48,209,88,0.1)] flex items-center justify-center gap-4"
               aria-busy={isSubmitting}
             >
               {isSubmitting ? (

@@ -59,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
 
           <button 
             onClick={() => onPageChange(Page.CONSULTANCY)}
-            className="hidden md:block bg-white/5 border border-white/10 text-white px-5 py-2 rounded text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-primary hover:text-background-dark"
+            className="hidden md:block bg-white/5 border border-white/10 text-white px-5 py-2 rounded text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-primary hover:text-white"
             aria-label="Agendar consulta"
           >
             Agendar Consulta
@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
               ))}
               <button
                 onClick={() => handleMobileNavClick(Page.CONSULTANCY)}
-                className="mt-4 bg-primary text-background-dark px-6 py-4 rounded-lg text-sm font-extrabold uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2"
+                className="mt-4 bg-primary text-white px-6 py-4 rounded-lg text-sm font-extrabold uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2"
                 aria-label="Agendar consulta"
               >
                 <span className="material-symbols-outlined text-sm">calendar_month</span>

@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
             <button 
               onClick={() => onNavigate(Page.CONSULTANCY)}
-              className="bg-primary text-background-dark h-14 px-8 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(74,222,128,0.3)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
+              className="bg-primary text-white h-14 px-8 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(48,209,88,0.12)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
               aria-label="Agendar consulta inicial gratuita"
             >
               Agendar Consulta Inicial
@@ -100,7 +100,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 <div className="flex gap-2">
                   <div className="size-3 rounded-full bg-red-500/50"></div>
                   <div className="size-3 rounded-full bg-yellow-500/50"></div>
-                  <div className="size-3 rounded-full bg-green-500/50"></div>
+                  <div className="size-3 rounded-full bg-primary/40"></div>
                 </div>
                 <span className="text-xs font-mono text-gray-500">CONSULTANCY_PROCESS v2.0</span>
               </div>
@@ -114,7 +114,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               </div>
             </div>
             {/* Glow behind */}
-            <div className="absolute inset-0 bg-primary/10 blur-[80px] -z-10 rounded-full"></div>
+            <div className="absolute inset-0 bg-primary/4 blur-[80px] -z-10 rounded-full"></div>
           </div>
         </div>
       </section>
