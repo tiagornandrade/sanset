@@ -52,7 +52,7 @@
   - "Privacidade" e "Compliance" agora apontam para `/privacidade` e `/compliance`
   - **⚠️ Ação necessária**: Criar páginas ou configurar redirects
 - [x] **Email clicável no footer**
-  - `contato@sanset.ai` agora é link `mailto:`
+  - `contato@sanset.io` agora é link `mailto:`
   - Email na página de contato também é clicável
 - [ ] **Scroll to top button**
   - Botão para voltar ao topo em páginas longas (nice to have)

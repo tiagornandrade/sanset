@@ -127,9 +127,9 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="space-y-6 pt-6">
-            <a href="mailto:growth@sanset.ai" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
+            <a href="mailto:growth@sanset.io" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
               <span className="material-symbols-outlined text-primary">mail</span>
-              <span className="text-sm font-mono">growth@sanset.ai</span>
+              <span className="text-sm font-mono">growth@sanset.io</span>
             </a>
             <div className="flex items-center gap-4 text-gray-400">
               <span className="material-symbols-outlined text-primary">location_on</span>
@@ -274,7 +274,7 @@ const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-6 bg-primary text-background-dark font-extrabold uppercase tracking-[0.3em] text-sm transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_20px_rgba(74,222,128,0.2)] flex items-center justify-center gap-4"
+              className="w-full py-6 bg-primary text-white font-extrabold uppercase tracking-[0.3em] text-sm transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_20px_rgba(48,209,88,0.1)] flex items-center justify-center gap-4"
               aria-busy={isSubmitting}
             >
               {isSubmitting ? (

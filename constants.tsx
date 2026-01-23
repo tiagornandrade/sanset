@@ -25,7 +25,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     withdrawal: 'Realizamos uma análise completa da operação e desenvolvemos um sistema inteligente que monitora o comportamento dos clientes, identifica sinais de oportunidade de expansão e automatiza o processo de qualificação e acionamento. O time agora recebe alertas estratégicos e pode focar em conversões de alto valor.',
     result: '+35%',
     resultSub: 'aumento em receita recorrente em 6 meses',
-    imageUrl: IMAGES.AI_GRAPH,
+    imageUrl: IMAGES.io_GRAPH,
   },
   {
     id: '2',

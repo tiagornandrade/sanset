@@ -202,8 +202,8 @@ Este projeto é privado.
 
 ## 🔗 Links
 
-- **Site**: [sanset.ai](https://sanset.ai) (quando em produção)
-- **Email**: <growth@sanset.ai>
+- **Site**: [sanset.io](https://sanset.io) (quando em produção)
+- **Email**: <growth@sanset.io>
 - **Localização**: Salvador | Atendimento Remoto
 
 ---

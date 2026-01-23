@@ -11,17 +11,17 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sanset.ai/" />
+    <meta property="og:url" content="https://sanset.io/" />
     <meta property="og:title" content="Sanset | Consultoria em Inteligência Agêntica" />
     <meta property="og:description" content="Consultoria especializada em agentes autônomos para startups. Transformamos sua operação através de soluções customizadas de automação agêntica." />
-    <meta property="og:image" content="https://sanset.ai/og-image.jpg" />
+    <meta property="og:image" content="https://sanset.io/og-image.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sanset.ai/" />
+    <meta property="twitter:url" content="https://sanset.io/" />
     <meta property="twitter:title" content="Sanset | Consultoria em Inteligência Agêntica" />
     <meta property="twitter:description" content="Consultoria especializada em agentes autônomos para startups. Transformamos sua operação através de soluções customizadas." />
-    <meta property="twitter:image" content="https://sanset.ai/og-image.jpg" />
+    <meta property="twitter:image" content="https://sanset.io/og-image.jpg" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -35,10 +35,11 @@
         theme: {
           extend: {
             colors: {
-              "primary": "#4ade80", // Green Phosphor (Tailwind green-400)
-              "tech-green": "#22c55e", // Deeper Phosphor Green
-              "background-dark": "#020402", // Deep black with a hint of green
-              "card-dark": "#0a0c0a",
+              "primary": "#30D158", // macOS green (maximize button color)
+              "accent": "#4CD964", // Lighter macOS green for secondary elements
+              "background-dark": "#0A0A0A", // Pure dark gray (neutral)
+              "card-dark": "#151515", // Slightly lighter dark gray
+              "border-subtle": "rgba(255, 255, 255, 0.08)", // Very subtle borders
             },
             fontFamily: {
               "sans": ["Plus Jakarta Sans", "sans-serif"],
@@ -52,32 +53,32 @@
       body {
         font-family: 'Plus Jakarta Sans', sans-serif;
         -webkit-font-smoothing: antialiased;
-        background-color: #020402;
-        color: #f1f5f9;
+        background-color: #0A0A0A;
+        color: #f5f5f5;
       }
       .neural-grid {
-        background-image: radial-gradient(circle at 1px 1px, rgba(74, 222, 128, 0.08) 1px, transparent 0);
+        background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
         background-size: 24px 24px;
       }
       .glow-aura {
-        background: radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.1) 0%, rgba(74, 222, 128, 0.05) 40%, transparent 70%);
+        background: radial-gradient(circle at 50% 0%, rgba(48, 209, 88, 0.03) 0%, transparent 50%);
       }
       .glass-card {
-        background: rgba(10, 12, 10, 0.75);
+        background: rgba(21, 21, 21, 0.8);
         backdrop-filter: blur(20px);
-        border: 1px solid rgba(74, 222, 128, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         transition: all 0.3s ease;
       }
       .glass-card:hover {
-        border-color: rgba(74, 222, 128, 0.3);
-        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(74, 222, 128, 0.05);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(48, 209, 88, 0.04);
         transform: translateY(-2px);
       }
       .agent-glow {
-        filter: drop-shadow(0 0 15px rgba(74, 222, 128, 0.4));
+        filter: drop-shadow(0 0 8px rgba(48, 209, 88, 0.12));
       }
       .text-phosphor {
-        text-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+        text-shadow: 0 0 6px rgba(48, 209, 88, 0.15);
       }
       @keyframes float {
         0%, 100% { transform: translateY(0); }
@@ -86,7 +87,7 @@
       .animate-float {
         animation: float 6s ease-in-out infinite;
       }
-      /* Custom scanline effect for that monitor feel */
+      /* Very subtle macOS green gradient overlay */
       body::before {
         content: " ";
         display: block;
@@ -95,11 +96,10 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+        background: linear-gradient(180deg, rgba(48, 209, 88, 0.008) 0%, transparent 40%, transparent 60%, rgba(76, 217, 100, 0.008) 100%);
         z-index: 9999;
-        background-size: 100% 4px, 3px 100%;
         pointer-events: none;
-        opacity: 0.3;
+        opacity: 0.6;
       }
     </style>
     <script type="importmap">

@@ -78,7 +78,7 @@ const Solutions: React.FC<SolutionsProps> = ({ onNavigate }) => {
           </div>
           <button 
             onClick={() => onNavigate(Page.CONSULTANCY)}
-            className="bg-primary text-background-dark px-12 h-16 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
+            className="bg-primary text-white px-12 h-16 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
             aria-label="Agendar consulta inicial gratuita"
           >
             Agendar Consulta Inicial
