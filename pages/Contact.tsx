@@ -127,9 +127,9 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="space-y-6 pt-6">
-            <a href="mailto:growth@sanset.ai" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
+            <a href="mailto:growth@sanset.io" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
               <span className="material-symbols-outlined text-primary">mail</span>
-              <span className="text-sm font-mono">growth@sanset.ai</span>
+              <span className="text-sm font-mono">growth@sanset.io</span>
             </a>
             <div className="flex items-center gap-4 text-gray-400">
               <span className="material-symbols-outlined text-primary">location_on</span>

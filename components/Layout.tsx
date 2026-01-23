@@ -141,8 +141,8 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
             </div>
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-gray-400">Contato</h4>
-              <a href="mailto:contato@sanset.ai" className="text-sm text-gray-600 hover:text-primary transition-colors">
-                contato@sanset.ai
+              <a href="mailto:contato@sanset.io" className="text-sm text-gray-600 hover:text-primary transition-colors">
+                contato@sanset.io
               </a>
             </div>
           </div>
