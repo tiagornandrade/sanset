@@ -2,9 +2,9 @@
 import { Page, NavItem, CaseStudy } from './types';
 
 export const IMAGES = {
-  AI_GRAPH: 'https://images.unsplash.com/photo-1551288049-bbdac8a28a1e', // Data/Growth graph
-  NEURAL_NET: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f', // Business/SaaS dashboard
-  DATA_FLOW: 'https://images.unsplash.com/photo-1551434678-e076c223a692' // Team/Startup vibe
+  AI_GRAPH: '/projetos/revenue-growth.png', // Revenue growth - professional with data dashboard
+  NEURAL_NET: '/projetos/sales-efficiency.png', // Sales efficiency - analyst with charts
+  DATA_FLOW: '/projetos/customer-retention.png' // Customer retention - operations room
 };
 
 export const NAV_ITEMS: NavItem[] = [
@@ -25,7 +25,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     withdrawal: 'Realizamos uma análise completa da operação e desenvolvemos um sistema inteligente que monitora o comportamento dos clientes, identifica sinais de oportunidade de expansão e automatiza o processo de qualificação e acionamento. O time agora recebe alertas estratégicos e pode focar em conversões de alto valor.',
     result: '+35%',
     resultSub: 'aumento em receita recorrente em 6 meses',
-    imageUrl: IMAGES.io_GRAPH,
+    imageUrl: IMAGES.AI_GRAPH,
   },
   {
     id: '2',

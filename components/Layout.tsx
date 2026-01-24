@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Page, NavItem } from '../types';
 import { NAV_ITEMS } from '../constants';
+import { LogoHorizon, LogoIcon } from './LogoVariants';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -36,9 +37,8 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
     <div className="min-h-screen flex flex-col bg-background-dark text-gray-300 selection:bg-primary selection:text-background-dark">
       <nav className="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => onPageChange(Page.HOME)} aria-label="Ir para página inicial">
-            <span className="material-symbols-outlined text-primary text-3xl font-bold">auto_awesome</span>
-            <h1 className="text-white text-lg font-bold tracking-tighter font-sans uppercase">Sanset</h1>
+          <div className="flex items-center cursor-pointer" onClick={() => onPageChange(Page.HOME)} aria-label="Ir para página inicial">
+            <LogoHorizon className="h-8 text-white" />
           </div>
 
           <div className="hidden md:flex items-center gap-10">
@@ -122,9 +122,8 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
       <footer className="bg-background-dark border-t border-white/5 py-12 px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-4 max-w-sm">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">auto_awesome</span>
-              <span className="text-white font-bold uppercase tracking-widest text-lg">Sanset</span>
+            <div className="flex items-center">
+              <LogoHorizon className="h-6 text-white" />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               Consultoria especializada em Inteligência Agêntica para startups. Transformamos sua operação através de agentes autônomos customizados.
