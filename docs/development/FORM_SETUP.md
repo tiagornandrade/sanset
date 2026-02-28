@@ -1,67 +1,59 @@
-# Configuração do Formulário de Contato
+<!-- markdownlint-disable -->
+# Configuração do Formulário de Consulta Inicial
 
-O formulário de contato está implementado com validação completa e feedback visual. Atualmente está configurado para usar **Formspree**, mas pode ser facilmente adaptado para outras soluções.
+O formulário de agendamento de consulta inicial envia os dados para a API interna (`POST /api/consultancy`), que usa **Resend** para enviar o email para a equipe.
 
-## Opções de Backend
+## Backend: Resend
 
-### 1. Formspree (Atual - Recomendado para começar)
+- **Site**: <https://resend.com>
+- **Dashboard / API Keys**: <https://resend.com/api-keys>
+- O email é enviado para `contato@sanset.io` (configurável via `CONSULTANCY_TO_EMAIL`).
 
-- **Gratuito**: Até 50 envios/mês
-- **Setup**: Criar conta em <https://formspree.io>
-- **Configuração**: Substituir `YOUR_FORM_ID` em `pages/Contact.tsx` pelo ID do seu formulário
+### Variáveis de ambiente
 
-```typescript
-const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-  // ...
-});
-```
+| Variável | Obrigatória | Descrição |
+|----------|-------------|-----------|
+| `RESEND_API_KEY` | Sim | API key do Resend (criar em resend.com/api-keys). |
+| `CONSULTANCY_FROM_EMAIL` | Não | Remetente. Padrão: `Sanset <onboarding@resend.dev>` (domínio de teste do Resend). Em produção, use um email do seu domínio verificado (ex.: `consultoria@sanset.io`). |
+| `CONSULTANCY_TO_EMAIL` | Não | Destinatário. Padrão: `contato@sanset.io`. Em modo de teste do Resend (sem domínio verificado), só é possível enviar para o email da sua conta. |
 
-### 2. EmailJS
+### Desenvolvimento local
 
-- **Gratuito**: Até 200 envios/mês
-- **Setup**:
-  1. Criar conta em <https://www.emailjs.com>
-  2. Configurar serviço de email (Gmail, Outlook, etc)
-  3. Instalar: `npm install @emailjs/browser`
-  4. Substituir lógica de envio
+1. Crie uma conta em [Resend](https://resend.com) e gere uma API key.
+2. Crie um arquivo `.env` na raiz do projeto (não versionado):
 
-### 3. SendGrid / Mailgun
+   ```env
+   RESEND_API_KEY=re_xxxxxxxxxxxx
+   ```
+   O destinatário padrão é `contato@sanset.io`; para outro email, defina `CONSULTANCY_TO_EMAIL`.
 
-- **Pago**: Mais robusto para produção
-- Requer backend próprio ou serverless function
+3. Suba frontend e API de uma vez (recomendado):
 
-### 4. Google Forms (Alternativa simples)
+   ```bash
+   npm run dev:all
+   ```
 
-- Usar Google Forms e embed via iframe
-- Menos controle visual, mas zero configuração
+   Ou em dois terminais: `npm run dev:server` (porta 3001) e `npm run dev` (porta 3000).
 
-## Funcionalidades Implementadas
+O Vite faz proxy de `/api` para `http://localhost:3001`, então o formulário envia para a API local.
 
-✅ **Validação de campos**
+### Produção (Cloud Run)
 
-- Nome obrigatório
-- Email obrigatório e validação de formato
-- Empresa obrigatória
-- Mensagem opcional
+Defina no serviço do Cloud Run:
 
-✅ **Feedback visual**
+- **Variáveis de ambiente**: `RESEND_API_KEY` (e, se quiser, `CONSULTANCY_FROM_EMAIL`, `CONSULTANCY_TO_EMAIL`).
+- Preferir **Secret Manager** para `RESEND_API_KEY` em vez de variável de ambiente em texto.
 
-- Estados de erro por campo
-- Loading state durante envio
-- Mensagem de sucesso
-- Mensagem de erro
+Domínio Resend: para enviar de um email próprio (ex.: `consultoria@sanset.io`), verifique o domínio em [Resend Domains](https://resend.com/domains) e use esse endereço em `CONSULTANCY_FROM_EMAIL`.
 
-✅ **Acessibilidade**
+## Funcionalidades do formulário
 
-- ARIA labels
-- Validação HTML5
-- Navegação por teclado
-- Screen reader friendly
+- Validação: nome, email e empresa obrigatórios; email válido.
+- Estados de loading, sucesso e erro com mensagem do servidor.
+- Acessibilidade: ARIA, validação HTML5, navegação por teclado.
 
-## Próximos Passos
+## Fluxo técnico
 
-1. Escolher solução de backend
-2. Configurar credenciais/IDs
-3. Testar envio de formulário
-4. Configurar notificações de email
-5. (Opcional) Adicionar analytics para tracking de conversões
+1. Frontend (`pages/Contact.tsx`) envia `POST /api/consultancy` com JSON: `name`, `email`, `company`, `interest`, `message`.
+2. Servidor (`server/index.js`) valida o body, monta o email em HTML e chama `resend.emails.send()`.
+3. O destinatário recebe o email e o `reply-to` é o email do lead para resposta direta.

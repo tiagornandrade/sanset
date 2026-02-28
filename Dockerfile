@@ -15,17 +15,18 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
+# Production stage: Node serves SPA + API
+FROM node:20.19-alpine
 
-# Copy built files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+WORKDIR /app
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY package*.json ./
+RUN npm ci --omit=dev
 
-# Expose port 8080 (Cloud Run default)
+COPY --from=builder /app/dist ./dist
+COPY server ./server
+
+ENV NODE_ENV=production
 EXPOSE 8080
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server/index.js"]

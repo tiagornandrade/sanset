@@ -50,12 +50,16 @@ jobs:
           docker push gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
 
       - name: Deploy to Cloud Run
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
+          ENV_VARS="RESEND_API_KEY=${RESEND_API_KEY}"
           gcloud run deploy $SERVICE_NAME \
             --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
             --region $REGION \
             --platform managed \
             --allow-unauthenticated \
+            --set-env-vars "$ENV_VARS" \
             --project $PROJECT_ID
 
       - name: Get Cloud Run URL
