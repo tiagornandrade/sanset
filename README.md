@@ -110,19 +110,20 @@ npm run preview
 
 ## 🔧 Configuração
 
-### Formulário de Contato
+### Formulário de Consulta Inicial
 
-O formulário está configurado para usar Formspree. Para configurar:
+O formulário de agendamento usa **Resend** para enviar os dados por email. Para configurar:
 
-1. Crie uma conta em [Formspree](https://formspree.io)
-2. Obtenha seu Form ID
-3. Substitua `YOUR_FORM_ID` em `pages/Contact.tsx` linha 78
+1. Crie uma conta em [Resend](https://resend.com) e gere uma API key
+2. Copie `.env.example` para `.env` e defina `RESEND_API_KEY`
+3. Em desenvolvimento: rode o servidor da API com `PORT=3001 npm run dev:server` e o frontend com `npm run dev`
 
-Veja mais detalhes em [docs/development/FORM_SETUP.md](./docs/development/FORM_SETUP.md)
+Veja mais detalhes em [docs/development/FORM_SETUP.md](./docs/development/FORM_SETUP.md).
 
 ### Variáveis de Ambiente
 
-Atualmente não há variáveis de ambiente necessárias para desenvolvimento local. O formulário usa Formspree que não requer configuração local.
+- **Desenvolvimento**: `RESEND_API_KEY` no `.env` (ver `.env.example`).
+- **Produção (Cloud Run)**: definir `RESEND_API_KEY` (e opcionalmente `CONSULTANCY_FROM_EMAIL`, `CONSULTANCY_TO_EMAIL`) no serviço.
 
 ## 🚀 Deploy
 

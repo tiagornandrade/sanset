@@ -25,6 +25,7 @@ const Contact: React.FC = () => {
   });
   
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitErrorMessage, setSubmitErrorMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -73,9 +74,7 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      // Setup: Create account at https://formspree.io and replace YOUR_FORM_ID with your form ID
-      // See docs/development/FORM_SETUP.md for detailed instructions
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('/api/consultancy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,13 +84,15 @@ const Contact: React.FC = () => {
           email: formData.email,
           company: formData.company,
           interest: formData.interest,
-          message: formData.message || '(Sem mensagem)',
-          _subject: `Nova consulta - ${formData.company}`,
+          message: formData.message || '',
         }),
       });
 
+      const errorBody = response.ok ? null : await response.json().catch(() => ({}));
+
       if (response.ok) {
         setSubmitStatus('success');
+        setSubmitErrorMessage('');
         setFormData({
           name: '',
           email: '',
@@ -101,10 +102,13 @@ const Contact: React.FC = () => {
         });
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
-        throw new Error('Erro ao enviar formulário');
+        setSubmitErrorMessage((errorBody?.error as string) || 'Erro ao enviar formulário');
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      setSubmitErrorMessage('Erro ao enviar. Tente novamente.');
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
@@ -127,9 +131,9 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="space-y-6 pt-6">
-            <a href="mailto:growth@sanset.io" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
+            <a href="mailto:contato@sanset.io" className="flex items-center gap-4 text-gray-400 hover:text-primary transition-colors">
               <span className="material-symbols-outlined text-primary">mail</span>
-              <span className="text-sm font-mono">growth@sanset.io</span>
+              <span className="text-sm font-mono">contato@sanset.io</span>
             </a>
             <div className="flex items-center gap-4 text-gray-400">
               <span className="material-symbols-outlined text-primary">location_on</span>
@@ -151,7 +155,7 @@ const Contact: React.FC = () => {
           {submitStatus === 'error' && (
             <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg flex items-center gap-3">
               <span className="material-symbols-outlined text-red-500">error</span>
-              <p className="text-red-500 text-sm font-mono">Erro ao enviar. Tente novamente ou envie um email direto.</p>
+              <p className="text-red-500 text-sm font-mono">{submitErrorMessage || 'Erro ao enviar. Tente novamente ou envie um email direto.'}</p>
             </div>
           )}
 
