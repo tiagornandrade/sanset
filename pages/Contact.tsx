@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+export type LeadType = 'consultoria' | 'mentoria';
 
 interface FormData {
   name: string;
@@ -15,15 +17,45 @@ interface FormErrors {
   company?: string;
 }
 
-const Contact: React.FC = () => {
+const CONSULTORIA_INTERESTS = [
+  'Automação de Leads e Funil',
+  'Inteligência de Receita (MRR)',
+  'Retenção e Customer Success',
+  'Operações e Backoffice',
+  'Outro - Vamos conversar',
+];
+
+const MENTORIA_INTERESTS = [
+  'Analista de Dados',
+  'Engenharia de Dados',
+  'Engenharia de Prompt',
+  'Ainda não sei - Quero conversar',
+];
+
+interface ContactProps {
+  contactMode?: 'mentoria' | null;
+}
+
+const Contact: React.FC<ContactProps> = ({ contactMode = null }) => {
+  const [leadType, setLeadType] = useState<LeadType>('consultoria');
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     company: '',
-    interest: 'Automação de Leads e Funil',
-    message: ''
+    interest: CONSULTORIA_INTERESTS[0],
+    message: '',
   });
-  
+
+  useEffect(() => {
+    if (contactMode === 'mentoria') {
+      setLeadType('mentoria');
+      setFormData((prev) => ({
+        ...prev,
+        interest: MENTORIA_INTERESTS[0],
+      }));
+    }
+  }, [contactMode]);
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitErrorMessage, setSubmitErrorMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +79,7 @@ const Contact: React.FC = () => {
       newErrors.email = 'Email inválido';
     }
 
-    if (!formData.company.trim()) {
+    if (leadType === 'consultoria' && !formData.company.trim()) {
       newErrors.company = 'Empresa é obrigatória';
     }
 
@@ -55,17 +87,26 @@ const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleLeadTypeChange = (type: LeadType) => {
+    setLeadType(type);
+    setErrors((prev) => ({ ...prev, company: undefined }));
+    setFormData((prev) => ({
+      ...prev,
+      interest: type === 'consultoria' ? CONSULTORIA_INTERESTS[0] : MENTORIA_INTERESTS[0],
+    }));
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -80,9 +121,10 @@ const Contact: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          type: leadType,
           name: formData.name,
           email: formData.email,
-          company: formData.company,
+          company: leadType === 'consultoria' ? formData.company : (formData.company.trim() || undefined),
           interest: formData.interest,
           message: formData.message || '',
         }),
@@ -97,8 +139,8 @@ const Contact: React.FC = () => {
           name: '',
           email: '',
           company: '',
-          interest: 'Automação de Leads e Funil',
-          message: ''
+          interest: leadType === 'consultoria' ? CONSULTORIA_INTERESTS[0] : MENTORIA_INTERESTS[0],
+          message: '',
         });
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
@@ -116,17 +158,24 @@ const Contact: React.FC = () => {
     }
   };
 
+  const isMentoria = leadType === 'mentoria';
+  const interests = isMentoria ? MENTORIA_INTERESTS : CONSULTORIA_INTERESTS;
+
   return (
     <div className="min-h-screen py-24 px-6 technical-grid">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <div className="space-y-12">
           <div className="space-y-6">
-            <span className="text-xs font-mono font-bold text-primary uppercase tracking-[0.4em]">Consulta Inicial</span>
+            <span className="text-xs font-mono font-bold text-primary uppercase tracking-[0.4em]">
+              {isMentoria ? 'Interesse em mentoria' : 'Consulta Inicial'}
+            </span>
             <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none text-phosphor">
-              Vamos <br/><span className="text-primary italic">conversar.</span>
+              Vamos <br /><span className="text-primary italic">conversar.</span>
             </h1>
             <p className="text-gray-500 text-lg max-w-lg leading-relaxed font-mono">
-              Agende uma consulta inicial gratuita. Vamos entender seus desafios e apresentar como nossa consultoria em inteligência agêntica pode transformar sua operação.
+              {isMentoria
+                ? 'Conte um pouco sobre você e qual trilha te interessa. Responderemos em até 24h para alinharmos expectativas.'
+                : 'Agende uma consulta inicial gratuita. Vamos entender seus desafios e apresentar como nossa consultoria em inteligência agêntica pode transformar sua operação.'}
             </p>
           </div>
 
@@ -143,8 +192,39 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="glass-card p-10 md:p-14 border border-white/10 relative rounded-[2rem]">
-          <div className="absolute top-0 right-0 p-4 font-mono text-xs text-gray-700 tracking-widest">CONSULTANCY_FORM_V1</div>
-          
+          <div className="absolute top-0 right-0 p-4 font-mono text-xs text-gray-700 tracking-widest">
+            {isMentoria ? 'MENTORIA_FORM_V1' : 'CONSULTANCY_FORM_V1'}
+          </div>
+
+          <div className="mb-8 flex rounded-lg border border-white/10 p-1 bg-white/[0.02]">
+            <button
+              type="button"
+              onClick={() => handleLeadTypeChange('consultoria')}
+              className={`flex-1 py-3 px-4 text-sm font-mono uppercase tracking-wider rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark ${
+                leadType === 'consultoria'
+                  ? 'bg-white/10 text-white'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+              aria-pressed={leadType === 'consultoria'}
+              aria-label="Sou empresa, quero consultoria"
+            >
+              Consultoria (empresa)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLeadTypeChange('mentoria')}
+              className={`flex-1 py-3 px-4 text-sm font-mono uppercase tracking-wider rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark ${
+                leadType === 'mentoria'
+                  ? 'bg-white/10 text-white'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+              aria-pressed={leadType === 'mentoria'}
+              aria-label="Sou pessoa física, quero mentoria"
+            >
+              Mentoria (pessoa física)
+            </button>
+          </div>
+
           {submitStatus === 'success' && (
             <div className="mb-6 p-4 bg-primary/20 border border-primary/50 rounded-lg flex items-center gap-3">
               <span className="material-symbols-outlined text-primary">check_circle</span>
@@ -215,7 +295,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-1">
               <label htmlFor="company" className="text-xs font-bold text-gray-500 uppercase tracking-widest">
-                Empresa <span className="text-red-500">*</span>
+                {isMentoria ? 'Onde você atua (opcional)' : <>Empresa <span className="text-red-500">*</span></>}
               </label>
               <input
                 id="company"
@@ -225,10 +305,10 @@ const Contact: React.FC = () => {
                 className={`w-full bg-transparent border-b py-3 text-white focus:outline-none focus:border-primary transition-all font-mono text-base ${
                   errors.company ? 'border-red-500/50' : 'border-white/10'
                 }`}
-                placeholder="Nome da sua startup"
+                placeholder={isMentoria ? 'Ex.: empresa atual, área, ou em transição' : 'Nome da sua startup'}
                 type="text"
-                required
-                aria-required="true"
+                required={!isMentoria}
+                aria-required={!isMentoria}
                 aria-invalid={!!errors.company}
                 aria-describedby={errors.company ? 'company-error' : undefined}
               />
@@ -241,7 +321,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-1">
               <label htmlFor="interest" className="text-xs font-bold text-gray-500 uppercase tracking-widest">
-                Área de Interesse
+                {isMentoria ? 'Trilha de interesse' : 'Área de Interesse'}
               </label>
               <select
                 id="interest"
@@ -249,13 +329,11 @@ const Contact: React.FC = () => {
                 value={formData.interest}
                 onChange={handleChange}
                 className="w-full bg-transparent border-b border-white/10 py-3 text-gray-500 focus:outline-none focus:border-primary transition-all font-mono text-base appearance-none"
-                aria-label="Área de interesse"
+                aria-label={isMentoria ? 'Trilha de interesse' : 'Área de interesse'}
               >
-                <option>Automação de Leads e Funil</option>
-                <option>Inteligência de Receita (MRR)</option>
-                <option>Retenção e Customer Success</option>
-                <option>Operações e Backoffice</option>
-                <option>Outro - Vamos conversar</option>
+                {interests.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
               </select>
             </div>
 
@@ -269,10 +347,10 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-primary transition-all font-mono text-base resize-none"
-                placeholder="Conte-nos sobre seus desafios atuais..."
+                placeholder={isMentoria ? 'Conte um pouco sobre sua trajetória e objetivo...' : 'Conte-nos sobre seus desafios atuais...'}
                 rows={3}
                 aria-label="Mensagem opcional"
-              ></textarea>
+              />
             </div>
 
             <button
@@ -288,14 +366,14 @@ const Contact: React.FC = () => {
                 </>
               ) : (
                 <>
-                  Agendar Consulta Inicial
-                  <span className="material-symbols-outlined text-sm">calendar_month</span>
+                  {isMentoria ? 'Quero saber mais sobre a mentoria' : 'Agendar Consulta Inicial'}
+                  <span className="material-symbols-outlined text-sm">{isMentoria ? 'school' : 'calendar_month'}</span>
                 </>
               )}
             </button>
-            
+
             <p className="text-xs text-center text-gray-600 uppercase tracking-widest leading-loose">
-              Consulta inicial gratuita. Entraremos em contato em até 24h.
+              {isMentoria ? 'Resposta em até 24h. Sem compromisso.' : 'Consulta inicial gratuita. Entraremos em contato em até 24h.'}
             </p>
           </form>
         </div>

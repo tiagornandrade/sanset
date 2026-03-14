@@ -2,6 +2,7 @@
 export enum Page {
   HOME = 'home',
   INFRASTRUCTURE = 'infrastructure',
+  MENTORIA = 'mentoria',
   REPORTS = 'reports',
   CONSULTANCY = 'consultancy'
 }

@@ -26,21 +26,28 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-            <button 
-              onClick={() => onNavigate(Page.CONSULTANCY)}
-              className="bg-primary text-white h-14 px-8 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(48,209,88,0.12)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
-              aria-label="Agendar consulta inicial gratuita"
-            >
-              Agendar Consulta Inicial
-            </button>
-            <button 
+            <button
               onClick={() => onNavigate(Page.INFRASTRUCTURE)}
-              className="bg-white/5 border border-white/10 text-white h-14 px-8 text-xs font-extrabold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
+              className="bg-white/5 border border-white/10 text-white h-14 px-8 text-xs font-extrabold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
               aria-label="Ver nossa metodologia de consultoria"
             >
               Nossa Metodologia <span className="material-symbols-outlined text-sm" aria-hidden="true">psychology</span>
             </button>
           </div>
+          <p className="text-gray-500 text-sm">
+            Quer falar conosco? Use <strong className="text-gray-400">Fale conosco</strong> no menu.
+          </p>
+          <p className="text-gray-500 text-sm font-mono">
+            Pessoa física?{' '}
+            <button
+              type="button"
+              onClick={() => onNavigate(Page.MENTORIA)}
+              className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark rounded"
+              aria-label="Conhecer mentoria em transição para dados"
+            >
+              Conheça nossa mentoria em transição para dados
+            </button>
+          </p>
         </div>
 
         <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
