@@ -21,7 +21,8 @@ function validateEmail(email) {
 }
 
 app.post('/api/consultancy', async (req, res) => {
-  const { name, email, company, interest, message } = req.body || {};
+  const { type, name, email, company, interest, message } = req.body || {};
+  const isMentoria = type === 'mentoria';
 
   if (!name || !String(name).trim()) {
     return res.status(400).json({ error: 'Nome é obrigatório' });
@@ -32,7 +33,7 @@ app.post('/api/consultancy', async (req, res) => {
   if (!validateEmail(email)) {
     return res.status(400).json({ error: 'Email inválido' });
   }
-  if (!company || !String(company).trim()) {
+  if (!isMentoria && (!company || !String(company).trim())) {
     return res.status(400).json({ error: 'Empresa é obrigatória' });
   }
 
@@ -42,13 +43,17 @@ app.post('/api/consultancy', async (req, res) => {
     return res.status(503).json({ error: 'Serviço de email não configurado' });
   }
 
-  const subject = `Nova consulta inicial - ${String(company).trim()}`;
+  const subject = isMentoria
+    ? `[Mentoria] Interesse - ${String(name).trim()}`
+    : `Nova consulta inicial - ${String(company).trim()}`;
   const html = `
-    <h2>Nova solicitação de consulta inicial</h2>
+    <h2>${isMentoria ? 'Nova solicitação de mentoria (pessoa física)' : 'Nova solicitação de consulta inicial'}</h2>
+    <p><strong>Tipo:</strong> ${isMentoria ? 'Mentoria' : 'Consultoria (empresa)'}</p>
     <p><strong>Nome:</strong> ${escapeHtml(String(name).trim())}</p>
     <p><strong>Email:</strong> ${escapeHtml(String(email).trim())}</p>
-    <p><strong>Empresa:</strong> ${escapeHtml(String(company).trim())}</p>
-    <p><strong>Área de interesse:</strong> ${escapeHtml(String(interest || '').trim() || '—')}</p>
+    ${isMentoria ? '' : `<p><strong>Empresa:</strong> ${escapeHtml(String(company).trim())}</p>`}
+    ${company && String(company).trim() && isMentoria ? `<p><strong>Onde atua:</strong> ${escapeHtml(String(company).trim())}</p>` : ''}
+    <p><strong>${isMentoria ? 'Trilha de interesse' : 'Área de interesse'}:</strong> ${escapeHtml(String(interest || '').trim() || '—')}</p>
     <p><strong>Mensagem:</strong></p>
     <p>${escapeHtml(String(message || '').trim() || '(Sem mensagem)')}</p>
   `;

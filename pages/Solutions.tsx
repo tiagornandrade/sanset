@@ -64,8 +64,8 @@ const Solutions: React.FC<SolutionsProps> = ({ onNavigate }) => {
       </div>
 
       <div className="max-w-5xl mx-auto mt-40 px-8">
-        <div className="p-16 border border-white/5 glass-card rounded-[2rem] flex flex-col md:flex-row gap-16 items-center">
-          <div className="flex-1 space-y-6 text-left">
+        <div className="p-16 border border-white/5 glass-card rounded-[2rem] flex flex-col gap-10">
+          <div className="space-y-6 text-left">
             <h3 className="text-3xl font-bold text-white tracking-tight">Soluções Customizadas para Seu Negócio.</h3>
             <p className="text-gray-400 leading-relaxed">
               Cada startup é única. Nossa consultoria adapta a tecnologia de agentes autônomos às suas necessidades específicas, garantindo que a solução se integre perfeitamente ao seu modelo de negócio e cultura organizacional.
@@ -76,13 +76,9 @@ const Solutions: React.FC<SolutionsProps> = ({ onNavigate }) => {
               <span className="px-3 py-1 bg-white/5 border border-white/10 text-xs font-mono text-primary">ACOMPANHAMENTO CONTÍNUO</span>
             </div>
           </div>
-          <button 
-            onClick={() => onNavigate(Page.CONSULTANCY)}
-            className="bg-primary text-white px-12 h-16 text-xs font-extrabold uppercase tracking-widest hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark"
-            aria-label="Agendar consulta inicial gratuita"
-          >
-            Agendar Consulta Inicial
-          </button>
+          <p className="text-gray-500 text-sm font-mono">
+            Quer falar conosco? Use <strong className="text-gray-400">Fale conosco</strong> no menu.
+          </p>
         </div>
       </div>
     </div>

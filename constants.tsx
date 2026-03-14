@@ -10,6 +10,7 @@ export const IMAGES = {
 export const NAV_ITEMS: NavItem[] = [
   { id: Page.HOME, label: 'Início', icon: 'rocket_launch' },
   { id: Page.INFRASTRUCTURE, label: 'Metodologia', icon: 'psychology' },
+  { id: Page.MENTORIA, label: 'Mentoria', icon: 'school' },
   { id: Page.REPORTS, label: 'Projetos', icon: 'folder' },
   { id: Page.CONSULTANCY, label: 'Contato', icon: 'mail' },
 ];
