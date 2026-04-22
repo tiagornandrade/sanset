@@ -126,16 +126,16 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
               <LogoHorizon className="h-6 text-white" />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Consultoria especializada em Inteligência Agêntica para startups. Transformamos sua operação através de agentes autônomos customizados.
+              Consultoria especializada em Dados — BI, Modern Data Stack, Engenharia de Dados, Governança, Arquitetura e estruturação de times. Transformamos dados em ativos estratégicos.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-16">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-gray-400">Tecnologia</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 text-gray-400">Stack</h4>
               <ul className="space-y-2 text-gray-600 text-sm">
-                <li>MCP Servers</li>
-                <li>Advanced RAG</li>
-                <li>A2A Orchestration</li>
+                <li>dbt · Airflow · Spark</li>
+                <li>BigQuery · Snowflake</li>
+                <li>Delta Lake · Iceberg</li>
               </ul>
             </div>
             <div>
@@ -147,7 +147,7 @@ const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) 
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-xs text-gray-600 uppercase tracking-widest">
-          <p>© 2024 Sanset. O futuro da operação é agêntico.</p>
+          <p>© 2025 Sanset. Dados como ativo estratégico.</p>
           <div className="flex gap-4">
             <a href="/privacidade" className="hover:text-primary transition-colors" aria-label="Política de Privacidade">
               Privacidade
