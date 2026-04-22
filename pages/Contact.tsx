@@ -18,17 +18,22 @@ interface FormErrors {
 }
 
 const CONSULTORIA_INTERESTS = [
-  'Automação de Leads e Funil',
-  'Inteligência de Receita (MRR)',
-  'Retenção e Customer Success',
-  'Operações e Backoffice',
+  'Business Intelligence (BI)',
+  'Modern Data Stack',
+  'Engenharia de Dados',
+  'Data Lake & Lakehouse',
+  'Governança de Dados',
+  'Arquitetura de Dados',
+  'Estruturação de Time de Dados',
   'Outro - Vamos conversar',
 ];
 
 const MENTORIA_INTERESTS = [
   'Analista de Dados',
   'Engenharia de Dados',
-  'Engenharia de Prompt',
+  'Analytics Engineering',
+  'BI Developer',
+  'Plataforma de Dados',
   'Ainda não sei - Quero conversar',
 ];
 
@@ -175,7 +180,7 @@ const Contact: React.FC<ContactProps> = ({ contactMode = null }) => {
             <p className="text-gray-500 text-lg max-w-lg leading-relaxed font-mono">
               {isMentoria
                 ? 'Conte um pouco sobre você e qual trilha te interessa. Responderemos em até 24h para alinharmos expectativas.'
-                : 'Agende uma consulta inicial gratuita. Vamos entender seus desafios e apresentar como nossa consultoria em inteligência agêntica pode transformar sua operação.'}
+                : 'Agende uma consulta inicial gratuita. Vamos entender seus desafios de dados e apresentar como nossa consultoria pode estruturar ou evoluir sua plataforma de dados.'}
             </p>
           </div>
 

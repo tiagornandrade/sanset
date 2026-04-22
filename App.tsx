@@ -61,7 +61,7 @@ const App: React.FC = () => {
     switch (currentPage) {
       case Page.HOME:
         return <Home onNavigate={navigateTo} />;
-      case Page.INFRASTRUCTURE:
+      case Page.SERVICES:
         return <Solutions onNavigate={navigateTo} />;
       case Page.MENTORIA:
         return <Mentoria onNavigate={navigateTo} mentoriaSlug={mentoriaSlug} />;

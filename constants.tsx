@@ -2,14 +2,14 @@
 import { Page, NavItem, CaseStudy } from './types';
 
 export const IMAGES = {
-  AI_GRAPH: '/projetos/revenue-growth.png', // Revenue growth - professional with data dashboard
-  NEURAL_NET: '/projetos/sales-efficiency.png', // Sales efficiency - analyst with charts
-  DATA_FLOW: '/projetos/customer-retention.png' // Customer retention - operations room
+  AI_GRAPH: '/projetos/data-migration.png',
+  NEURAL_NET: '/projetos/data-platform.png',
+  DATA_FLOW: '/projetos/data-governance.png'
 };
 
 export const NAV_ITEMS: NavItem[] = [
   { id: Page.HOME, label: 'Início', icon: 'rocket_launch' },
-  { id: Page.INFRASTRUCTURE, label: 'Metodologia', icon: 'psychology' },
+  { id: Page.SERVICES, label: 'Serviços', icon: 'hub' },
   { id: Page.MENTORIA, label: 'Mentoria', icon: 'school' },
   { id: Page.REPORTS, label: 'Projetos', icon: 'folder' },
   { id: Page.CONSULTANCY, label: 'Contato', icon: 'mail' },
@@ -18,38 +18,38 @@ export const NAV_ITEMS: NavItem[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: '1',
-    title: 'Acelerando Crescimento de Receita em SaaS',
-    category: 'Consultoria Finance',
-    tag: 'REVENUE GROWTH',
-    industry: 'SAAS B2B',
-    problem: 'Startup de SaaS B2B com dificuldade em identificar e converter oportunidades de expansão de receita. O time de Customer Success trabalhava de forma reativa, perdendo janelas importantes para upsell e cross-sell. A falta de visibilidade sobre padrões de uso dos clientes impedia ações proativas.',
-    withdrawal: 'Realizamos uma análise completa da operação e desenvolvemos um sistema inteligente que monitora o comportamento dos clientes, identifica sinais de oportunidade de expansão e automatiza o processo de qualificação e acionamento. O time agora recebe alertas estratégicos e pode focar em conversões de alto valor.',
-    result: '+35%',
-    resultSub: 'aumento em receita recorrente em 6 meses',
+    title: 'Migração de Data Warehouse Legado para Modern Data Stack',
+    category: 'Engenharia de Dados',
+    tag: 'DATA MIGRATION',
+    industry: 'VAREJO',
+    problem: 'Empresa de varejo com data warehouse Oracle legado sofrendo com queries demorando horas, custo crescente de licenciamento e um time de dados incapaz de entregar análises com agilidade. O stack não escalava para os novos volumes de dados e a manutenção consumia 80% da capacidade do time.',
+    withdrawal: 'Executamos a migração completa para BigQuery + dbt + Airflow. Redesenhamos a modelagem dimensional com arquitetura medallion (bronze/silver/gold), automatizamos a ingestão de 18 fontes de dados e implementamos testes de qualidade em cada camada. O time passou a desenvolver e entregar análises em ciclos de dias, não semanas.',
+    result: '-70%',
+    resultSub: 'redução no tempo de processamento e custo de infraestrutura',
     imageUrl: IMAGES.AI_GRAPH,
   },
   {
     id: '2',
-    title: 'Otimização do Funil de Vendas',
-    category: 'Consultoria Growth',
-    tag: 'SALES EFFICIENCY',
-    industry: 'MARKETPLACE',
-    problem: 'Marketplace em crescimento enfrentando gargalo no processo de vendas. A equipe comercial recebia muitos leads, mas a maioria não estava qualificada. O tempo gasto com leads de baixa qualidade impactava a capacidade de atender oportunidades reais, resultando em baixa taxa de conversão.',
-    withdrawal: 'Mapeamos todo o processo de vendas e implementamos uma solução que qualifica e prioriza leads automaticamente. O sistema enriquece informações, identifica fit e agenda reuniões apenas com prospects qualificados. A equipe comercial passou a focar exclusivamente em oportunidades com maior probabilidade de fechamento.',
-    result: '3x',
-    resultSub: 'mais conversões com mesmo tamanho de equipe',
+    title: 'Construção de Plataforma de Dados para Fintech em Crescimento',
+    category: 'Arquitetura de Dados',
+    tag: 'DATA PLATFORM',
+    industry: 'FINTECH',
+    problem: 'Fintech em crescimento acelerado sem infraestrutura de dados estruturada. Decisões sendo tomadas com base em planilhas e dados inconsistentes espalhados em sistemas operacionais distintos. Relatórios regulatórios demoravam semanas e eram propensos a erros manuais.',
+    withdrawal: 'Desenhamos e implementamos uma plataforma de dados completa: data lake no S3, ingestão via Airbyte de 12 fontes, transformação e modelagem com dbt, orquestração com Airflow e camada analítica no Metabase. Implementamos catálogo de dados, lineage e políticas de qualidade desde o dia zero.',
+    result: '12x',
+    resultSub: 'mais rápido na geração de relatórios regulatórios e análises de negócio',
     imageUrl: IMAGES.NEURAL_NET,
   },
   {
     id: '3',
-    title: 'Redução de Cancelamentos em Fintech',
-    category: 'Consultoria Retention',
-    tag: 'CUSTOMER RETENTION',
-    industry: 'FINTECH',
-    problem: 'Fintech enfrentando alta taxa de cancelamento sem conseguir identificar padrões ou sinais de alerta. As tentativas de retenção aconteciam apenas após o cancelamento, quando já era tarde demais. Informações importantes estavam espalhadas em diferentes sistemas, dificultando uma visão consolidada do cliente.',
-    withdrawal: 'Criamos uma visão unificada do cliente consolidando dados de múltiplas fontes. Desenvolvemos um sistema que identifica sinais precoces de risco de cancelamento e aciona automaticamente ações preventivas personalizadas. A equipe agora recebe alertas proativos e pode intervir antes que o cliente tome a decisão de cancelar.',
-    result: '-28%',
-    resultSub: 'redução na taxa de churn em 4 meses',
+    title: 'Programa de Governança de Dados em Grupo Industrial',
+    category: 'Governança de Dados',
+    tag: 'DATA GOVERNANCE',
+    industry: 'INDÚSTRIA',
+    problem: 'Grupo industrial com 6 subsidiárias, dados sem padronização entre unidades e compliance com LGPD em risco. Relatórios inconsistentes entre áreas geravam conflitos nas reuniões de diretoria. Sem linhagem de dados, era impossível rastrear a origem de qualquer número apresentado.',
+    withdrawal: 'Implantamos programa de governança com DataHub como catálogo central, mapeamento completo de linhagem de dados, políticas de qualidade com SLAs por domínio e comitê de dados com ownership definido. Capacitamos 45 profissionais nos novos processos e entregamos adequação LGPD em toda a holding.',
+    result: '100%',
+    resultSub: 'adequação LGPD e dados confiáveis em toda a holding em 8 meses',
     imageUrl: IMAGES.DATA_FLOW,
   }
 ];
