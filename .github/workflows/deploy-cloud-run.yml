@@ -52,8 +52,9 @@ jobs:
       - name: Deploy to Cloud Run
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
         run: |
-          ENV_VARS="RESEND_API_KEY=${RESEND_API_KEY}"
+          ENV_VARS="RESEND_API_KEY=${RESEND_API_KEY},GCS_BUCKET_NAME=${GCS_BUCKET_NAME}"
           gcloud run deploy $SERVICE_NAME \
             --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
             --region $REGION \
