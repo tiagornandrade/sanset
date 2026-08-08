@@ -6,7 +6,7 @@
 set -e
 
 PROJECT_ID="intendra-deployments"
-REPO="tiagornandrade/sanset"  # Update with your actual GitHub repo
+REPO="otiagonavarro/sanset"  # Update with your actual GitHub repo
 
 echo "🔍 Searching for Workload Identity Pools in project: $PROJECT_ID"
 echo ""
