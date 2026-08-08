@@ -545,8 +545,7 @@ const Research: React.FC<ResearchProps> = () => {
               ) : (
                 <button
                   onClick={goNext}
-                  disabled={!answers[currentQuestion.id]}
-                  className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2"
+                  className="text-xs font-mono uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
                   aria-label="Pular pergunta"
                 >
                   Pular
