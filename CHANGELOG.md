@@ -6,6 +6,98 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-08-08]
+
+### Added
+
+- add pull requests configs — *Tiago Ribeiro Navarro de Andrade*
+- feat: pesquisa de mercado sobre IA com persistência em GCS — *Tiago Ribeiro Navarro de Andrade*
+
+### Fixed
+
+- fix: padrões de regex do update_changelog não batiam com o CHANGELOG — *Tiago Ribeiro Navarro de Andrade*
+- fix: adiciona GCS_BUCKET_NAME no deploy do Cloud Run — *Tiago Ribeiro Navarro de Andrade*
+- fix: atualiza WIF para o novo dono do repo (otiagonavarro/sanset) — *Tiago Ribeiro Navarro de Andrade*
+- fix: botão Pular agora pula independente de haver resposta — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-04-22]
+
+### Added
+
+- feat: reposicionamento completo para consultoria especializada em Dados — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-03-14]
+
+### Added
+
+- feat: página Mentoria, formulário dual (consultoria/mentoria) e CTA Fale conosco — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-02-28]
+
+### Added
+
+- feat: formulário de contato com backend Resend e deploy Cloud Run — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-01-24]
+
+### Added
+
+- adicionar arquivos faltantes — *Tiago Ribeiro Navarro de Andrade*
+- feat: add Gemini-generated project images and update logo — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-01-22]
+
+### Added
+
+- ajustar dominio — *Tiago Navarro*
+- feat: improve project structure, documentation and user experience — *Tiago Navarro*
+
+### Changed
+
+- Update color palette to macOS green — *Tiago Navarro*
+
+### Fixed
+
+- fix: add Service Usage Admin permission and billing documentation — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-01-21]
+
+### Fixed
+
+- fix: escape '>' characters in JSX to prevent build errors — *Tiago Ribeiro Navarro de Andrade*
+- fix: add package-lock.json and update Node version in Dockerfile — *Tiago Ribeiro Navarro de Andrade*
+- fix: add package-lock.json and update Node version in Dockerfile — *Tiago Ribeiro Navarro de Andrade*
+- fix: resolve Cloud Build bucket access issue — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
+## [2026-01-19]
+
+### Added
+
+- feat: add deployment scripts and documentation — *Tiago Ribeiro Navarro de Andrade*
+- feat: add Cloud Run deployment with Cloud Build — *Tiago Ribeiro Navarro de Andrade*
+- first commit — *Tiago Ribeiro Navarro de Andrade*
+
+### Changed
+
+- Update scripts/setup-wif.sh — *Tiago Ribeiro Navarro de Andrade*
+- Update nginx.conf — *Tiago Ribeiro Navarro de Andrade*
+
+---
+
 ## [Unreleased]
 
 ### Added
