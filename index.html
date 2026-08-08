@@ -87,6 +87,20 @@
       .animate-float {
         animation: float 6s ease-in-out infinite;
       }
+      @keyframes surveyInFwd {
+        0% { opacity: 0; transform: translateX(24px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes surveyInBack {
+        0% { opacity: 0; transform: translateX(-24px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+      .animate-survey-in-fwd {
+        animation: surveyInFwd 0.3s ease-out;
+      }
+      .animate-survey-in-back {
+        animation: surveyInBack 0.3s ease-out;
+      }
       /* Very subtle macOS green gradient overlay */
       body::before {
         content: " ";

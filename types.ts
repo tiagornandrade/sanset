@@ -4,6 +4,7 @@ export enum Page {
   SERVICES = 'services',
   MENTORIA = 'mentoria',
   REPORTS = 'reports',
+  RESEARCH = 'research',
   CONSULTANCY = 'consultancy'
 }
 
