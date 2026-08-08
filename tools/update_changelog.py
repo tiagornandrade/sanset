@@ -20,21 +20,25 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent
 CHANGELOG_PATH = PROJECT_ROOT / "CHANGELOG.md"
 
-HEADER_PATTERN = re.compile(
-    r"(O formato é baseado em \[Keep a Changelog\]"
-    r"\(https://keepachangelog\.com/pt-BR/1\.0\.0/\)\.\n\n"
-    r"---\n\n)"
-    r"(## \[)",
-    re.DOTALL,
-)
+HEADER_PATTERN = re.compile(r"^(.*?)^## \[", re.DOTALL | re.MULTILINE)
 
-DATE_ENTRY_PATTERN = re.compile(r"^## \[(\d{4}-\d{2}-\d{2})\]", re.MULTILINE)
+DATE_ENTRY_PATTERN = re.compile(
+    r"^## \[(\d{4}-\d{2}-\d{2})\]"
+    r"|"
+    r"^## \[[^\]]+\]\s*-\s*(\d{4}-\d{2}-\d{2})",
+    re.MULTILINE,
+)
 
 
 def get_last_changelog_date(content: str) -> str | None:
-    """Extract the most recent date from the changelog."""
+    """Extract the most recent date from the changelog.
+
+    Supports both date-based entries (``## [2024-01-22]``) and
+    Keep a Changelog version entries (``## [0.1.0] - 2024-01-22``).
+    """
     matches = DATE_ENTRY_PATTERN.findall(content)
-    return max(matches) if matches else None
+    dates = [m[0] or m[1] for m in matches if (m[0] or m[1])]
+    return max(dates) if dates else None
 
 
 def run_git_log(since_date: str) -> list[tuple[str, str, str]]:
