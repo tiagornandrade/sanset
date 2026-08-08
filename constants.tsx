@@ -12,6 +12,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: Page.SERVICES, label: 'Serviços', icon: 'hub' },
   { id: Page.MENTORIA, label: 'Mentoria', icon: 'school' },
   { id: Page.REPORTS, label: 'Projetos', icon: 'folder' },
+  { id: Page.RESEARCH, label: 'Pesquisa IA', icon: 'insights' },
   { id: Page.CONSULTANCY, label: 'Contato', icon: 'mail' },
 ];
 

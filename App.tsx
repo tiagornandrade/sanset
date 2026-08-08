@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Solutions from './pages/Solutions';
 import Mentoria from './pages/Mentoria';
 import Cases from './pages/Cases';
+import Research from './pages/Research';
 import Contact from './pages/Contact';
 
 const App: React.FC = () => {
@@ -67,6 +68,8 @@ const App: React.FC = () => {
         return <Mentoria onNavigate={navigateTo} mentoriaSlug={mentoriaSlug} />;
       case Page.REPORTS:
         return <Cases />;
+      case Page.RESEARCH:
+        return <Research />;
       case Page.CONSULTANCY:
         return <Contact contactMode={contactMode} />;
       default:
