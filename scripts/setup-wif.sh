@@ -9,7 +9,7 @@ PROJECT_ID="intendra-deployments"
 POOL_ID="github-pool"
 PROVIDER_ID="github-provider"
 SERVICE_ACCOUNT_NAME="github-actions-sa"
-REPO="tiagornandrade/sanset"  # Update with your actual GitHub repo
+REPO="otiagonavarro/sanset"  # Update with your actual GitHub repo
 
 echo "🚀 Setting up Workload Identity Federation for GitHub Actions"
 echo "Project: $PROJECT_ID"
